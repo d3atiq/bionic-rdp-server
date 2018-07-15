@@ -1,0 +1,22 @@
+---
+# tasks file for bionic-rdp-server package installation
+
+- name: Install RDP remote access support apt packages
+  become: true
+  apt:
+    update_cache: true
+    name: "{{ item }}"
+    state: present
+  notify: start xrdp
+  with_items:
+    - xrdp
+
+- name: Install Ubuntu graphical environment apt packages
+  become: true
+  apt:
+    update_cache: true
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - ubuntu-desktop
+
